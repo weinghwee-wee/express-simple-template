@@ -8,7 +8,7 @@ module.exports.createContact = (req, res) => new Promise(async (resolve, reject)
 
     const nearbyUserRiskIndex = await User.getNearbyUserRiskIndex(user_id)
 
-    let result = (nearbyUserRiskIndex > 3) ? true : false
+    let result = (nearbyUserRiskIndex == 2) ? true : false
 
     resolve({
         dangerous: result

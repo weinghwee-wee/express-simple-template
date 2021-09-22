@@ -12,15 +12,9 @@ module.exports.calculateRiskScore = (questionObjects) => {
 // get the total risk score to determine the risk index
 module.exports.getRiskIndexBasedonRiskScore = (riskScore) => {
     switch (true) {
-        case (riskScore < 2):
+        case (riskScore <=4):
             return 1
-        case (riskScore < 5):
-            return 2
-        case (riskScore < 8):
-            return 3
-        case (riskScore < 10):
-            return 4
         default:
-            return 5
+            return 2
     }
 }
