@@ -23,7 +23,6 @@ module.exports.submitQuestions = (req, res) => new Promise(async (resolve, rejec
   let { questions } = req.body
   let questionIds = []
 
-
   // filter for only "YES" question
   questions = questions.filter(question => {
     return question.value == 1
@@ -41,4 +40,3 @@ module.exports.submitQuestions = (req, res) => new Promise(async (resolve, rejec
 
   resolve(true)
 })
-

@@ -62,6 +62,16 @@ userSchema.statics.findByCredentials = async (phone, password) => {
   return user
 };
 
+userSchema.statics.getNearbyUserRiskIndex = async (user_id) => {
+  const nearbyUser = await User.findById(user_id)
+
+  if (nearbyUser) {
+    return nearbyUser.riskIndex
+  }
+
+  return 1
+};
+
 // invoke automatically before sending response
 // remove sensitive data like password and tokens
 userSchema.methods.toJSON = function () {
@@ -80,6 +90,7 @@ userSchema.methods.updateRiskIndex = function (riskIndex) {
 
   user.save()
 };
+
 
 const User = mongoose.model('User', userSchema)
 
