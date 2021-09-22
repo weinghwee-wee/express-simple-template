@@ -22,10 +22,12 @@ const route = (requestMethod, routeName, method, noAuth) => {
   return app[requestMethod](routeName, requestHandler(method, noAuth))
 }
 
-const { user, auth } = require('./src/service');
+const { user, auth, question } = require('./src/service');
 
 route('post', '/user/signup', user.registerUser, true)
 route('post', '/user/login', auth.loginUser, true)
+
+route('post', '/api/question', question.createQuestion, true)
 // route('post', '/user/refresh', auth.refreshToken)
 module.exports = app
 

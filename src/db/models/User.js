@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
   salt: {
     type: String,
     require: true,
+  },
+  riskIndex: {
+    type: Number,
+    default: 1,
   }
 }, {
   timestamps: true
