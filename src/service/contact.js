@@ -2,9 +2,9 @@ const { contactDB } = require('../db')
 const { User } = require('../db/models')
 
 module.exports.createContact = (req, res) => new Promise(async (resolve, reject) => {
-    const { user_id } = req.body
+    const { id, user_id } = req.body
 
-    const contact = await contactDB.createContact(user_id)
+    const contact = await contactDB.createContact(id, user_id)
 
     const nearbyUserRiskIndex = await User.getNearbyUserRiskIndex(user_id)
 

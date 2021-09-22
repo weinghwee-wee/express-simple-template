@@ -1,8 +1,9 @@
 const { Contact } = require('./models')
 
-module.exports.createContact = (user_id) => new Promise(async (resolve, reject) => {
+module.exports.createContact = (id, user_id) => new Promise(async (resolve, reject) => {
   const newContact = new Contact({
-    user_id
+    user_id,
+    createdBy: id
   })
 
   try {

@@ -1,5 +1,6 @@
 const { questionDB } = require('../db')
 const { riskCalculator } = require('../utils')
+const { User } = require('../db/models')
 
 module.exports.createQuestion = (req, res) => new Promise(async (resolve, reject) => {
   const { text, weightage } = req.body
@@ -20,7 +21,7 @@ module.exports.getQuestions = (req, res) => new Promise(async (resolve, reject) 
 })
 
 module.exports.submitQuestions = (req, res) => new Promise(async (resolve, reject) => {
-  let { questions } = req.body
+  let { questions, user_id } = req.body
   let questionIds = []
 
   // filter for only "YES" question
@@ -36,7 +37,9 @@ module.exports.submitQuestions = (req, res) => new Promise(async (resolve, rejec
   const riskScore = riskCalculator.calculateRiskScore(questionObjects)
   const riskIndex = riskCalculator.getRiskIndexBasedonRiskScore(riskScore)
 
-  req.user.updateRiskIndex(riskIndex)
+  const user = await User.findById(user_id)
+
+  user.updateRiskIndex(riskIndex)
 
   resolve(true)
 })
