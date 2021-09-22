@@ -15,12 +15,12 @@ module.exports.createQuestion = (text, weightage) => new Promise(async (resolve,
   }
 })
 
-// module.exports.retrieveUsers = (query) => new Promise(async (resolve, reject) => {
-//   try {
-//     const users = await User.find(query)
+module.exports.retrieveQuestions = (query) => new Promise(async (resolve, reject) => {
+  try {
+    const questions = await Question.find(query)
 
-//     resolve(users)
-//   } catch (e) {
-//     resolve([])
-//   }
-// })
+    resolve(questions)
+  } catch (e) {
+    resolve([])
+  }
+})

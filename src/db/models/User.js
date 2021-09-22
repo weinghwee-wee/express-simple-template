@@ -74,6 +74,12 @@ userSchema.methods.toJSON = function () {
   return userObject
 };
 
+userSchema.methods.updateRiskIndex = function (riskIndex) {
+  const user = this
+  user.riskIndex = riskIndex
+
+  user.save()
+};
 
 const User = mongoose.model('User', userSchema)
 

@@ -27,7 +27,10 @@ const { user, auth, question } = require('./src/service');
 route('post', '/user/signup', user.registerUser, true)
 route('post', '/user/login', auth.loginUser, true)
 
-route('post', '/api/question', question.createQuestion, true)
+route('post', '/api/questions', question.createQuestion, true)
+route('get', '/api/questions', question.getQuestions)
+route('post', '/api/questions/submit', question.submitQuestions)
+
 // route('post', '/user/refresh', auth.refreshToken)
 module.exports = app
 
