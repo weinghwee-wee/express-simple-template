@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken')
 const { accessTokenExpiryTime } = require('../constant')
 const  { User, Token } = require('./models')
 
-module.exports.login = (email, password) => new Promise(async (resolve, reject) => {
+module.exports.login = (phone, password) => new Promise(async (resolve, reject) => {
   try {
-    const user = await User.findByCredentials(email, password)
+    const user = await User.findByCredentials(phone, password)
     const { token, refreshToken } = await generateAuthToken(user._id)
 
     resolve({

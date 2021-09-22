@@ -2,7 +2,17 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
 const userSchema = new mongoose.Schema({
-  email: {
+  name: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  phone: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  ic_no: {
     type: String,
     required: true,
     unique: true
@@ -32,17 +42,17 @@ userSchema.pre('save', async function (next) {
 });
 
 // search for uer object with the email and compare password
-userSchema.statics.findByCredentials = async (email, password) => {
-  const user = await User.findOne({ email })
+userSchema.statics.findByCredentials = async (phone, password) => {
+  const user = await User.findOne({ phone })
 
   if (!user) {
-    throw new Error("Invalid email or password!")
+    throw new Error("Invalid phone or password!")
   }
 
   const isMatch = await bcrypt.compare(password + user.salt, user.password)
 
   if (!isMatch) {
-    throw new Error("Invalid email or password!")
+    throw new Error("Invalid phone or password!")
   }
 
   return user

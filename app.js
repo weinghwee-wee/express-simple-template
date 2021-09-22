@@ -24,9 +24,9 @@ const route = (requestMethod, routeName, method, noAuth) => {
 
 const { user, auth } = require('./src/service');
 
-route('post', '/user', user.registerUser)
-route('post', '/user/login', auth.loginUser)
-route('post', '/user/refresh', auth.refreshToken)
+route('post', '/user/signup', user.registerUser, true)
+route('post', '/user/login', auth.loginUser, true)
+// route('post', '/user/refresh', auth.refreshToken)
 module.exports = app
 
 app.listen(PORT, () => {

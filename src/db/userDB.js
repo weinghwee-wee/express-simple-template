@@ -1,9 +1,11 @@
 const { User } = require('./models')
 
-module.exports.createUser = (email, password, salt) => new Promise(async (resolve, reject) => {
+module.exports.createUser = (name, password, phone, ic_no, salt) => new Promise(async (resolve, reject) => {
   const newUser = new User({
-    email,
+    name,
     password,
+    phone,
+    ic_no,
     salt
   })
 

@@ -1,9 +1,9 @@
 const { authDB } = require('../db')
 
 module.exports.loginUser = (req, res) => new Promise(async (resolve, reject) => {
-  const { email, password } = req.body
+  const { phone, password } = req.body
 
-  const result = await authDB.login(email, password) 
+  const result = await authDB.login(phone, password) 
   
   if (result.user) {
     return resolve(result)

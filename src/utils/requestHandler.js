@@ -45,10 +45,21 @@ const createResponse = (req, res, next) => {
 
   const { statusCode, response } = error
 
-  res.status(statusCode || 400).send({
-    status: statusCode || 400,
-    error: response
-  })
+  if (response.code == 11000) {
+    const duplicatedField = Object.keys(response.keyValue)[0]
+    const duplicatedValue = response.keyValue[duplicatedField]
+    const errResponse = `User with the ${duplicatedField} of ${duplicatedValue} is already existed`
+    res.status(400).send({
+      status: 400,
+      error: errResponse
+    })
+  } else {
+    res.status(statusCode || 400).send({
+      status: statusCode || 400,
+      error: response
+    })
+  }
+  
 }
 
 module.exports = requestHandler
